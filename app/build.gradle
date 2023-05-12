@@ -32,6 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -40,6 +44,8 @@ dependencies {
     def retrofitVersion = "2.9.0"
     def interceptorVersion = "4.10.0"
     def lifecycleVersion = "2.6.1"
+    def activityVersion = "1.7.1"
+    def fragmentVersion = "1.5.7"
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -48,6 +54,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //AndroidX
+    implementation "androidx.activity:activity-ktx:$activityVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
 
     //    Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
