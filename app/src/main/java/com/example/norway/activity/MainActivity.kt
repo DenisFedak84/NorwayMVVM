@@ -6,6 +6,7 @@ import com.example.norway.viewmodel.MainViewModel
 import androidx.activity.viewModels
 import com.example.norway.data.DataModel
 import com.example.norway.databinding.ActivityMainBinding
+import com.example.norway.extensions.visibleOrGone
 import com.example.norway.lifecycle.observeEvents
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,11 +30,12 @@ class MainActivity : AppCompatActivity() {
     private fun bindUI() {
         initListeners()
         subscribeToLiveData()
-        viewModel.getNotes()
     }
 
     private fun initListeners() {
-
+        binding.btnGetData.setOnClickListener {
+            viewModel.getNotes()
+        }
     }
 
     private fun subscribeToLiveData() {
@@ -43,13 +45,16 @@ class MainActivity : AppCompatActivity() {
     private fun handleEvent(event: MainViewModel.Event) {
         when (event) {
             is MainViewModel.Event.ShowNotes -> showNotes(event.notes)
+            is MainViewModel.Event.ShowError -> showError(event.error)
+            is MainViewModel.Event.LoadingState -> binding.progress.visibleOrGone(event.isLoading)
         }
+    }
+
+    private fun showError(error: String) {
+        binding.tvLabel.text = error
     }
 
     private fun showNotes(notes: List<DataModel>) {
         binding.tvLabel.text = notes.size.toString()
     }
-
 }
-
-
