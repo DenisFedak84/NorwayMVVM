@@ -2,10 +2,15 @@ package com.example.norway.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.norway.viewmodel.MainViewModel
 import androidx.activity.viewModels
-import com.example.norway.data.DataModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.norway.adapters.UserAdapter
+import com.example.norway.data.UserAdapterModel
 import com.example.norway.databinding.ActivityMainBinding
+import com.example.norway.extensions.gone
+import com.example.norway.extensions.visible
 import com.example.norway.extensions.visibleOrGone
 import com.example.norway.lifecycle.observeEvents
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var userAdapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +36,20 @@ class MainActivity : AppCompatActivity() {
     private fun bindUI() {
         initListeners()
         subscribeToLiveData()
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        binding.rvUser.apply {
+            userAdapter = UserAdapter()
+            layoutManager = LinearLayoutManager(context)
+            adapter = userAdapter
+            userAdapter.onItemClicked = { userClicked(it) }
+        }
+    }
+
+    private fun userClicked(user : UserAdapterModel) {
+        Toast.makeText(this, "Hi, I'm ${user.name}", Toast.LENGTH_LONG).show()
     }
 
     private fun initListeners() {
@@ -51,10 +71,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError(error: String) {
-        binding.tvLabel.text = error
+        with (binding) {
+            rvUser.gone()
+            tvLabel.visible()
+            tvLabel.text = error
+        }
     }
 
-    private fun showNotes(notes: List<DataModel>) {
-        binding.tvLabel.text = notes.size.toString()
+    private fun showNotes(users: List<UserAdapterModel>) {
+        with (binding) {
+            rvUser.visible()
+            tvLabel.gone()
+            userAdapter.addData(users)
+        }
     }
 }

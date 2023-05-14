@@ -10,12 +10,28 @@
         android:id="@+id/tv_Label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
         android:gravity="center"
+        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_User"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dimen_16"
+        android:background="@android:color/white"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/btn_getData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_user" />
 
     <Button
         android:id="@+id/btn_getData"
@@ -33,12 +49,12 @@
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/color_primary_dark"
         android:clickable="true"
+        android:elevation="15dp"
         android:focusable="true"
         android:gravity="center"
         android:visibility="gone"
-        android:elevation="15dp"
-        android:background="@color/color_primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -51,7 +67,6 @@
             android:indeterminate="true"
             android:indeterminateTintMode="src_atop" />
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
