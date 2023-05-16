@@ -1,5 +1,6 @@
 package com.example.norway.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.btnGetData.setOnClickListener {
             viewModel.getNotes()
+        }
+        binding.btnLogin.setOnClickListener{
+            startActivity(Intent(this, LoginActivity :: class.java))
         }
     }
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BasicTextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/color_primary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dimen_16</item>
+        <item name="android:layout_marginRight">@dimen/dimen_16</item>
+        <item name="errorTextAppearance">@style/InputErrorAppearance</item>
+        <item name="hintTextAppearance">@style/InputAppearance</item>
+    </style>
+
+    <style name="InputErrorAppearance">
+        <item name="android:textSize">@dimen/dimen_sp_12</item>
+        <item name="android:textColor">@color/folly</item>
+    </style>
+
+    <style name="InputAppearance">
+        <item name="android:textSize">@dimen/dimen_sp_12</item>
+        <item name="android:textColorHint">@color/light_gray_color</item>
+        <item name="android:textColor">@color/purple_200</item>
+    </style>
+
+    <style name="BasicEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/dimen_16</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/light_gray_color</item>
+        <item name="android:textSize">@dimen/dimen_sp_16</item>
+    </style>
+</resources>
