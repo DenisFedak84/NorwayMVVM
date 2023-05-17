@@ -4,9 +4,13 @@
     <!--    MainActivity-->
     <string name="get_data">Get Data</string>
 
-    <!--    LoginActivity-->
+    <!--    LoginFragment-->
     <string name="hint_email_address">Email Address</string>
     <string name="hint_password">Password</string>
     <string name="login">Login</string>
+    <string name="create_user">Create new user</string>
+
+    <!--    CreateUserFragment-->
+    <string name="create_user_fragment">Hello create user fragment</string>
 
 </resources>

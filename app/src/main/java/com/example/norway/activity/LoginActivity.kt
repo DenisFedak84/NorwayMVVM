@@ -1,23 +1,20 @@
 package com.example.norway.activity
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.norway.R
 import com.example.norway.databinding.ActivityLoginBinding
-import com.example.norway.lifecycle.observeEvents
-import com.example.norway.viewmodel.LoginViewModel
+import com.example.norway.fragments.CreateUserFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
-        bindUI()
     }
 
     private fun initBinding() {
@@ -26,26 +23,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
     }
 
-    private fun bindUI() {
-        initListeners()
-        subscribeToLiveData()
+    fun navigateToCreateUserFragment() {
+       supportFragmentManager.beginTransaction().apply {
+           replace(R.id.fragment_container_view, CreateUserFragment())
+           addToBackStack(null)
+           commit()
+       }
     }
-
-    private fun subscribeToLiveData() {
-        observeEvents(viewModel.eventsLiveData, ::handleEvent)
-    }
-
-    private fun handleEvent(event: LoginViewModel.Event) {
-      when(event){
-          is LoginViewModel.Event.ShowToken -> showToken(event.token)
-      }
-    }
-
-    private fun showToken(token: String) {
-    }
-
-
-    private fun initListeners() {
-    }
-
 }
