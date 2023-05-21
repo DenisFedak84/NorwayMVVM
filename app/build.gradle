@@ -46,6 +46,7 @@ dependencies {
     def lifecycleVersion = "2.6.1"
     def activityVersion = "1.7.1"
     def fragmentVersion = "1.5.7"
+    def room_Version = "2.5.1"
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -74,5 +75,10 @@ dependencies {
 
     //    LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+
+    //Room
+    implementation "androidx.room:room-ktx:$room_Version"
+    kapt "androidx.room:room-compiler:$room_Version"
+
 
 }

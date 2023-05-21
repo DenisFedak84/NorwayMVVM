@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.norway.data.LoginRequest
 import com.example.norway.data.LoginResponse
+import com.example.norway.db.AuthUser
 import com.example.norway.lifecycle.ConsumableEvent
 import com.example.norway.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,6 +33,15 @@ class LoginViewModel @Inject constructor(private val repository: UserRepository)
                 }
                 .collect {
                     eventsLiveData.value = ConsumableEvent(Event.ShowToken(it))
+                }
+        }
+    }
+
+    fun saveAuth(authUser: AuthUser) {
+        viewModelScope.launch {
+            repository.saveUserAuthToDB(authUser).flowOn(Dispatchers.IO).catch { e -> println(e) }
+                .collect {
+                    println("Saved: $it")
                 }
         }
     }

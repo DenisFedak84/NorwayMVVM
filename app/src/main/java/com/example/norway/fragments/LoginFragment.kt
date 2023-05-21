@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.norway.activity.LoginActivity
 import com.example.norway.databinding.FragmentLoginBinding
+import com.example.norway.db.AuthUser
 import com.example.norway.lifecycle.observeEvents
 import com.example.norway.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,7 +84,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun showToken(token: String) {
-        Toast.makeText(context, "Token: ${token}", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Token: $token", Toast.LENGTH_LONG).show()
+        viewModel.saveAuth(AuthUser(token,""))
     }
 
 
